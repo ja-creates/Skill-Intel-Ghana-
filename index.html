@@ -2155,22 +2155,75 @@ const quizQuestions = [
 ];
 
 function startAdvisor() {
-  // Defensive init
-  if (typeof quizAnswers === 'undefined') window.quizAnswers = [];
-  if (typeof currentQuestion === 'undefined') window.currentQuestion = 0;
-  if (typeof quizQuestions === 'undefined' || !Array.isArray(quizQuestions)) {
-    showToast('Quiz data not loaded. Please refresh the page.', 'error');
-    return;
-  }
-  quizAnswers = [];
-  currentQuestion = 0;
-  showScreen('advisor');
   try {
-    renderQuestion();
+    // Ultra-defensive reset
+    window.quizAnswers = [];
+    window.currentQuestion = 0;
+
+    if (!window.quizQuestions || !Array.isArray(window.quizQuestions) || window.quizQuestions.length === 0) {
+      // Fallback: define questions inline if missing
+      window.quizQuestions = [
+        {
+          q: "How much starting capital can you realistically put in right now?",
+          options: [
+            { text: "Under ₵500", value: "low" },
+            { text: "₵500 – ₵2,000", value: "medium" },
+            { text: "₵2,000 – ₵5,000", value: "high" },
+            { text: "Over ₵5,000", value: "veryhigh" }
+          ]
+        },
+        {
+          q: "How many hours per week can you dedicate?",
+          options: [
+            { text: "Less than 10 hours", value: "lowtime" },
+            { text: "10 – 20 hours", value: "mediumtime" },
+            { text: "20+ hours", value: "hightime" }
+          ]
+        }
+      ];
+    }
+
+    showScreen('advisor');
+    
+    // Force render with extra safety
+    setTimeout(() => {
+      const body = document.getElementById('qBody');
+      if (!body) {
+        showToast('Quiz screen not found. Please refresh.', 'error');
+        return;
+      }
+      
+      // Render first question manually as ultimate fallback
+      const q = window.quizQuestions[0];
+      let html = `<h3>${q.q}</h3><div class="sub">Choose the option that fits you best</div>`;
+      
+      q.options.forEach((opt, idx) => {
+        html += `
+          <div class="option" onclick="selectOption(${idx})">
+            <div class="dot"></div>
+            <div style="flex:1;">${opt.text}</div>
+          </div>
+        `;
+      });
+      
+      body.innerHTML = html;
+      document.getElementById('qCounter').textContent = `1/${window.quizQuestions.length}`;
+      
+      showToast('Quiz loaded (simplified mode)');
+    }, 50);
+    
   } catch (e) {
-    console.error('Quiz render error:', e);
+    console.error('Advisor critical error:', e);
     const body = document.getElementById('qBody');
-    if (body) body.innerHTML = '<p style="color:var(--danger);">Sorry, the quiz failed to load. Please refresh.</p>';
+    if (body) {
+      body.innerHTML = `
+        <div style="padding:20px; text-align:center;">
+          <h3>Quiz temporarily unavailable</h3>
+          <p>Please refresh the page and try again.</p>
+          <button class="btn btn-primary" onclick="location.reload()">Refresh Page</button>
+        </div>
+      `;
+    }
   }
 }
 

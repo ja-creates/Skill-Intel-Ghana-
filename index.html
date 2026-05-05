@@ -546,7 +546,7 @@ button:active, .chip:active { opacity: 0.8; }
 
 <script>
 // ==================== DATA ====================
-const skillsData = [
+const featuredSkills = [
   {
     id: 1,
     title: "Smartphone & Gadget Repair",
@@ -1349,6 +1349,91 @@ const skillsData = [
   }
 ];
 
+// ==================== EXTENDED SKILLS (Lite version - 80+ more) ====================
+// These appear when user searches or filters. They have shorter data for performance.
+const extendedSkills = [
+  {id:26, title:"Yam Farming", category:"Agriculture & Farming", icon:"fas fa-seedling", desc:"Grow and sell yams. High demand staple food across Ghana.", difficulty:"Medium", startup_cost:1500, potential_income:4800, time_to_learn:"4-6 months", regions:["All"], popularity:72},
+  {id:27, title:"Plantain Farming", category:"Agriculture & Farming", icon:"fas fa-seedling", desc:"Cultivate plantains for local markets and chop bars.", difficulty:"Medium", startup_cost:1200, potential_income:4200, time_to_learn:"5-7 months", regions:["All"], popularity:68},
+  {id:28, title:"Cashew Farming", category:"Agriculture & Farming", icon:"fas fa-seedling", desc:"Grow cashew trees for nuts and apples. Good export potential.", difficulty:"Medium", startup_cost:2000, potential_income:5500, time_to_learn:"3-5 years", regions:["All"], popularity:61},
+  {id:29, title:"Cocoa Farming", category:"Agriculture & Farming", icon:"fas fa-seedling", desc:"Traditional cocoa farming with modern techniques for higher yield.", difficulty:"Hard", startup_cost:2500, potential_income:7000, time_to_learn:"2-3 years", regions:["All"], popularity:65},
+  {id:30, title:"Palm Oil Processing", category:"Food & Beverage", icon:"fas fa-oil-can", desc:"Process palm fruits into red palm oil for cooking and soap.", difficulty:"Medium", startup_cost:1800, potential_income:5200, time_to_learn:"3-4 weeks", regions:["All"], popularity:70},
+  {id:31, title:"Shea Butter Production", category:"Food & Beverage", icon:"fas fa-soap", desc:"Process shea nuts into shea butter for cosmetics and cooking.", difficulty:"Medium", startup_cost:950, potential_income:3800, time_to_learn:"2-3 weeks", regions:["Northern","Upper East","Upper West"], popularity:58},
+  {id:32, title:"Dawadawa Processing", category:"Food & Beverage", icon:"fas fa-seedling", desc:"Ferment and process dawadawa (locust bean) seasoning.", difficulty:"Easy", startup_cost:400, potential_income:2400, time_to_learn:"1-2 weeks", regions:["Northern","Savannah"], popularity:52},
+  {id:33, title:"Fish Smoking & Sales", category:"Food & Beverage", icon:"fas fa-fish", desc:"Smoke and sell tilapia, herring and other fish.", difficulty:"Easy", startup_cost:600, potential_income:3500, time_to_learn:"1 week", regions:["All"], popularity:74},
+  {id:34, title:"Pito Brewing", category:"Food & Beverage", icon:"fas fa-beer", desc:"Traditional pito (millet beer) brewing and sales.", difficulty:"Medium", startup_cost:500, potential_income:2800, time_to_learn:"2-3 weeks", regions:["Northern","Upper East"], popularity:49},
+  {id:35, title:"Electrical Installation", category:"Trades & Construction", icon:"fas fa-bolt", desc:"House wiring, installation of sockets, lights and breakers.", difficulty:"Hard", startup_cost:2200, potential_income:5800, time_to_learn:"6-10 weeks", regions:["All"], popularity:67},
+  {id:36, title:"Plumbing Services", category:"Trades & Construction", icon:"fas fa-wrench", desc:"Install and repair pipes, toilets, sinks and water systems.", difficulty:"Medium", startup_cost:1400, potential_income:4500, time_to_learn:"4-6 weeks", regions:["All"], popularity:63},
+  {id:37, title:"Tiling & Flooring", category:"Trades & Construction", icon:"fas fa-th-large", desc:"Lay ceramic, porcelain and marble tiles for homes and offices.", difficulty:"Medium", startup_cost:1600, potential_income:4900, time_to_learn:"4-5 weeks", regions:["All"], popularity:59},
+  {id:38, title:"Painting & Decoration", category:"Trades & Construction", icon:"fas fa-paint-brush", desc:"Interior and exterior painting for houses and commercial buildings.", difficulty:"Easy", startup_cost:700, potential_income:3200, time_to_learn:"2-3 weeks", regions:["All"], popularity:71},
+  {id:39, title:"Carpentry & Joinery", category:"Trades & Construction", icon:"fas fa-hammer", desc:"Make doors, windows, furniture and wooden fittings.", difficulty:"Hard", startup_cost:2500, potential_income:5200, time_to_learn:"8-12 weeks", regions:["All"], popularity:55},
+  {id:40, title:"Aluminium Fabrication", category:"Trades & Construction", icon:"fas fa-tools", desc:"Make aluminium windows, doors and partitions.", difficulty:"Medium", startup_cost:2800, potential_income:6100, time_to_learn:"5-7 weeks", regions:["All"], popularity:52},
+  {id:41, title:"Barbing Salon", category:"Fashion & Beauty", icon:"fas fa-cut", desc:"Professional haircuts and grooming for men and boys.", difficulty:"Easy", startup_cost:450, potential_income:2600, time_to_learn:"3-5 weeks", regions:["All"], popularity:82},
+  {id:42, title:"Nail Technology", category:"Fashion & Beauty", icon:"fas fa-hand-sparkles", desc:"Manicure, pedicure, nail extensions and nail art.", difficulty:"Easy", startup_cost:380, potential_income:2400, time_to_learn:"2-4 weeks", regions:["All"], popularity:69},
+  {id:43, title:"Makeup Artistry", category:"Fashion & Beauty", icon:"fas fa-palette", desc:"Bridal, event and everyday makeup services.", difficulty:"Medium", startup_cost:550, potential_income:3100, time_to_learn:"4-6 weeks", regions:["All"], popularity:66},
+  {id:44, title:"Fashion Design & Sewing", category:"Fashion & Beauty", icon:"fas fa-tshirt", desc:"Design and sew modern and traditional clothing.", difficulty:"Hard", startup_cost:3200, potential_income:5800, time_to_learn:"10-16 weeks", regions:["All"], popularity:61},
+  {id:45, title:"Second-hand Clothes Trading", category:"Retail & Trading", icon:"fas fa-tshirt", desc:"Buy and sell quality used clothing (bend down boutique style).", difficulty:"Easy", startup_cost:800, potential_income:3800, time_to_learn:"1-2 weeks", regions:["All"], popularity:78},
+  {id:46, title:"Phone Accessories Trading", category:"Retail & Trading", icon:"fas fa-mobile-alt", desc:"Sell cases, chargers, earphones, power banks in markets.", difficulty:"Easy", startup_cost:600, potential_income:2900, time_to_learn:"1 week", regions:["All"], popularity:75},
+  {id:47, title:"Provisions & Small Retail", category:"Retail & Trading", icon:"fas fa-store", desc:"Run a small provisions shop or table-top retail.", difficulty:"Easy", startup_cost:1500, potential_income:3200, time_to_learn:"Ongoing", regions:["All"], popularity:73},
+  {id:48, title:"Mobile Money Agency", category:"Services", icon:"fas fa-wallet", desc:"Offer mobile money services (MTN, Vodafone, AirtelTigo).", difficulty:"Easy", startup_cost:300, potential_income:2200, time_to_learn:"1 week", regions:["All"], popularity:81},
+  {id:49, title:" Okada / Tricycle Transport", category:"Services", icon:"fas fa-motorcycle", desc:"Provide transport services with motor tricycle or motorcycle.", difficulty:"Medium", startup_cost:4500, potential_income:4800, time_to_learn:"2-3 weeks", regions:["All"], popularity:64},
+  {id:50, title:"Delivery & Errand Services", category:"Services", icon:"fas fa-truck", desc:"Deliver food, documents and small packages within town.", difficulty:"Easy", startup_cost:400, potential_income:2600, time_to_learn:"1 week", regions:["All"], popularity:67},
+  {id:51, title:"Event Photography", category:"Creative & Arts", icon:"fas fa-camera", desc:"Cover weddings, funerals, corporate events and parties.", difficulty:"Medium", startup_cost:1800, potential_income:4200, time_to_learn:"3-4 weeks", regions:["All"], popularity:59},
+  {id:52, title:"Video Editing (Phone)", category:"Tech & Digital", icon:"fas fa-video", desc:"Edit videos for social media, weddings and businesses using phone apps.", difficulty:"Easy", startup_cost:0, potential_income:2800, time_to_learn:"2-3 weeks", regions:["All"], popularity:64},
+  {id:53, title:"Social Media Management", category:"Tech & Digital", icon:"fas fa-share-alt", desc:"Manage Instagram, TikTok and Facebook pages for local businesses.", difficulty:"Easy", startup_cost:0, potential_income:3200, time_to_learn:"2-4 weeks", regions:["All"], popularity:61},
+  {id:54, title:"Data Entry Services", category:"Tech & Digital", icon:"fas fa-keyboard", desc:"Offer data entry and spreadsheet work for businesses and NGOs.", difficulty:"Easy", startup_cost:0, potential_income:2100, time_to_learn:"1-2 weeks", regions:["All"], popularity:55},
+  {id:55, title:"Freelance Writing", category:"Tech & Digital", icon:"fas fa-pen", desc:"Write articles, blog posts and social media content for clients.", difficulty:"Medium", startup_cost:0, potential_income:2900, time_to_learn:"Ongoing", regions:["All"], popularity:52},
+  {id:56, title:"Graphic Design (Advanced)", category:"Tech & Digital", icon:"fas fa-palette", desc:"Create professional logos, banners and marketing materials.", difficulty:"Medium", startup_cost:300, potential_income:4100, time_to_learn:"4-6 weeks", regions:["All"], popularity:58},
+  {id:57, title:"Web Development Basics", category:"Tech & Digital", icon:"fas fa-globe", desc:"Build simple websites for small businesses using no-code tools.", difficulty:"Medium", startup_cost:200, potential_income:4800, time_to_learn:"6-8 weeks", regions:["All"], popularity:49},
+  {id:58, title:"Solar Street Light Installation", category:"Tech & Digital", icon:"fas fa-lightbulb", desc:"Install and maintain solar street lights for communities and institutions.", difficulty:"Medium", startup_cost:3500, potential_income:6500, time_to_learn:"4-5 weeks", regions:["All"], popularity:46},
+  {id:59, title:"Beehive Construction", category:"Agriculture & Farming", icon:"fas fa-bug", desc:"Build and sell modern beehives to beekeepers.", difficulty:"Easy", startup_cost:800, potential_income:3100, time_to_learn:"2-3 weeks", regions:["All"], popularity:43},
+  {id:60, title:"Snail Pen Construction", category:"Agriculture & Farming", icon:"fas fa-bug", desc:"Build and sell quality snail pens and cages.", difficulty:"Easy", startup_cost:600, potential_income:2700, time_to_learn:"1-2 weeks", regions:["All"], popularity:41},
+  {id:61, title:"Mushroom Spawn Production", category:"Agriculture & Farming", icon:"fas fa-seedling", desc:"Produce and sell mushroom spawn to other farmers.", difficulty:"Medium", startup_cost:1200, potential_income:3900, time_to_learn:"3-4 weeks", regions:["All"], popularity:38},
+  {id:62, title:"Organic Fertilizer Production", category:"Agriculture & Farming", icon:"fas fa-seedling", desc:"Make compost and organic fertilizer from farm waste.", difficulty:"Easy", startup_cost:400, potential_income:2300, time_to_learn:"2-3 weeks", regions:["All"], popularity:47},
+  {id:63, title:"Poultry Feed Production", category:"Agriculture & Farming", icon:"fas fa-egg", desc:"Mix and sell quality poultry feed to farmers.", difficulty:"Medium", startup_cost:2500, potential_income:5200, time_to_learn:"3-4 weeks", regions:["All"], popularity:44},
+  {id:64, title:"Veterinary Drug Sales", category:"Agriculture & Farming", icon:"fas fa-syringe", desc:"Sell animal drugs and vaccines to livestock farmers.", difficulty:"Medium", startup_cost:1800, potential_income:4100, time_to_learn:"2-3 weeks", regions:["All"], popularity:39},
+  {id:65, title:"Tractor & Equipment Hiring", category:"Agriculture & Farming", icon:"fas fa-tractor", desc:"Hire out tractor and farming equipment to smallholder farmers.", difficulty:"Hard", startup_cost:15000, potential_income:8500, time_to_learn:"Ongoing", regions:["All"], popularity:36},
+  {id:66, title:"Irrigation System Installation", category:"Agriculture & Farming", icon:"fas fa-tint", desc:"Install drip and sprinkler irrigation systems.", difficulty:"Medium", startup_cost:3200, potential_income:5800, time_to_learn:"4-5 weeks", regions:["All"], popularity:33},
+  {id:67, title:"Bead Making Workshop", category:"Creative & Arts", icon:"fas fa-gem", desc:"Teach bead making and sell kits to participants.", difficulty:"Easy", startup_cost:350, potential_income:2400, time_to_learn:"2 weeks", regions:["All"], popularity:51},
+  {id:68, title:"Kente Weaving", category:"Creative & Arts", icon:"fas fa-gem", desc:"Weave and sell authentic and modern kente cloth.", difficulty:"Hard", startup_cost:2800, potential_income:4900, time_to_learn:"12-20 weeks", regions:["Ashanti","Eastern","Volta"], popularity:48},
+  {id:69, title:"Leather Work & Bags", category:"Creative & Arts", icon:"fas fa-briefcase", desc:"Make and sell leather bags, belts and wallets.", difficulty:"Medium", startup_cost:1500, potential_income:3600, time_to_learn:"6-8 weeks", regions:["All"], popularity:45},
+  {id:70, title:"Pottery & Ceramics", category:"Creative & Arts", icon:"fas fa-mug-hot", desc:"Make and sell clay pots, vases and decorative items.", difficulty:"Medium", startup_cost:900, potential_income:2800, time_to_learn:"8-10 weeks", regions:["All"], popularity:42},
+  {id:71, title:"Music Production (Beat Making)", category:"Creative & Arts", icon:"fas fa-music", desc:"Produce beats and instrumentals for artists and content creators.", difficulty:"Medium", startup_cost:600, potential_income:3400, time_to_learn:"4-6 weeks", regions:["All"], popularity:54},
+  {id:72, title:"DJ Services", category:"Services", icon:"fas fa-headphones", desc:"Provide DJ services for parties, weddings and events.", difficulty:"Medium", startup_cost:2500, potential_income:4500, time_to_learn:"3-4 weeks", regions:["All"], popularity:57},
+  {id:73, title:"MC & Comedy", category:"Services", icon:"fas fa-microphone", desc:"Host events and provide stand-up comedy entertainment.", difficulty:"Medium", startup_cost:200, potential_income:3800, time_to_learn:"Ongoing", regions:["All"], popularity:53},
+  {id:74, title:"Catering Services", category:"Food & Beverage", icon:"fas fa-utensils", desc:"Provide food for events, offices and parties.", difficulty:"Medium", startup_cost:1200, potential_income:4200, time_to_learn:"3-4 weeks", regions:["All"], popularity:69},
+  {id:75, title:"Chop Bar / Local Restaurant", category:"Food & Beverage", icon:"fas fa-utensils", desc:"Run a small chop bar serving local Ghanaian dishes.", difficulty:"Hard", startup_cost:4500, potential_income:6500, time_to_learn:"Ongoing", regions:["All"], popularity:66},
+  {id:76, title:"Ice Cream / Yogurt Production", category:"Food & Beverage", icon:"fas fa-ice-cream", desc:"Produce and sell ice cream and frozen yogurt.", difficulty:"Medium", startup_cost:2800, potential_income:4800, time_to_learn:"3-4 weeks", regions:["All"], popularity:48},
+  {id:77, title:"Bread & Pastry Baking", category:"Food & Beverage", icon:"fas fa-bread-slice", desc:"Bake bread, meat pies, sausage rolls and pastries.", difficulty:"Medium", startup_cost:1600, potential_income:3900, time_to_learn:"4-5 weeks", regions:["All"], popularity:62},
+  {id:78, title:"Fruit Juice Processing", category:"Food & Beverage", icon:"fas fa-glass-whiskey", desc:"Produce natural fruit juices from mango, pineapple, etc.", difficulty:"Medium", startup_cost:1400, potential_income:3600, time_to_learn:"2-3 weeks", regions:["All"], popularity:51},
+  {id:79, title:"Honey Processing & Packaging", category:"Food & Beverage", icon:"fas fa-jar", desc:"Process, package and brand local honey.", difficulty:"Easy", startup_cost:700, potential_income:2900, time_to_learn:"1-2 weeks", regions:["All"], popularity:46},
+  {id:80, title:"Groundnut Oil Production", category:"Food & Beverage", icon:"fas fa-oil-can", desc:"Extract and sell pure groundnut oil.", difficulty:"Medium", startup_cost:1100, potential_income:3400, time_to_learn:"2-3 weeks", regions:["All"], popularity:44},
+  {id:81, title:"Charcoal Production (Improved)", category:"Agriculture & Farming", icon:"fas fa-fire", desc:"Produce cleaner, more efficient charcoal using improved methods.", difficulty:"Medium", startup_cost:900, potential_income:3100, time_to_learn:"3-4 weeks", regions:["All"], popularity:39},
+  {id:82, title:"Bamboo & Rattan Products", category:"Creative & Arts", icon:"fas fa-chair", desc:"Make and sell furniture and crafts from bamboo and rattan.", difficulty:"Medium", startup_cost:1100, potential_income:3300, time_to_learn:"6-8 weeks", regions:["All"], popularity:37},
+  {id:83, title:"Waste Plastic to Fuel", category:"Services", icon:"fas fa-recycle", desc:"Convert plastic waste into fuel using small-scale technology.", difficulty:"Hard", startup_cost:8500, potential_income:7200, time_to_learn:"8-10 weeks", regions:["Greater Accra","Ashanti"], popularity:31},
+  {id:84, title:"E-waste Collection & Recycling", category:"Services", icon:"fas fa-laptop", desc:"Collect and recycle old phones, computers and electronics.", difficulty:"Medium", startup_cost:600, potential_income:2700, time_to_learn:"2-3 weeks", regions:["All"], popularity:35},
+  {id:85, title:"Used Tyre Recycling", category:"Services", icon:"fas fa-recycle", desc:"Collect and process used tyres into mats, fuel or other products.", difficulty:"Medium", startup_cost:1500, potential_income:3800, time_to_learn:"4-5 weeks", regions:["All"], popularity:33},
+  {id:86, title:"Organic Vegetable Farming", category:"Agriculture & Farming", icon:"fas fa-seedling", desc:"Grow chemical-free vegetables for health-conscious buyers and restaurants.", difficulty:"Medium", startup_cost:900, potential_income:3900, time_to_learn:"6-8 weeks", regions:["All"], popularity:56},
+  {id:87, title:"Hydroponics / Soilless Farming", category:"Agriculture & Farming", icon:"fas fa-seedling", desc:"Grow vegetables without soil using nutrient-rich water.", difficulty:"Hard", startup_cost:4500, potential_income:6800, time_to_learn:"6-8 weeks", regions:["Greater Accra","Ashanti"], popularity:29},
+  {id:88, title:"Rabbit Farming", category:"Agriculture & Farming", icon:"fas fa-paw", desc:"Raise rabbits for meat and fur. Fast reproduction cycle.", difficulty:"Easy", startup_cost:700, potential_income:2900, time_to_learn:"3-4 months", regions:["All"], popularity:41},
+  {id:89, title:"Grasscutter Farming", category:"Agriculture & Farming", icon:"fas fa-paw", desc:"Raise grasscutters (bush rats) for meat. High demand delicacy.", difficulty:"Medium", startup_cost:1800, potential_income:5200, time_to_learn:"5-7 months", regions:["All"], popularity:47},
+  {id:90, title:"Turkey & Duck Farming", category:"Agriculture & Farming", icon:"fas fa-egg", desc:"Raise turkeys and ducks for meat and eggs.", difficulty:"Medium", startup_cost:2200, potential_income:4800, time_to_learn:"4-6 months", regions:["All"], popularity:38},
+  {id:91, title:"Beekeeping Training & Consultancy", category:"Agriculture & Farming", icon:"fas fa-chalkboard-teacher", desc:"Train others in modern beekeeping and sell equipment.", difficulty:"Medium", startup_cost:500, potential_income:3500, time_to_learn:"Ongoing", regions:["All"], popularity:34},
+  {id:92, title:"Agricultural Extension Services", category:"Agriculture & Farming", icon:"fas fa-chalkboard-teacher", desc:"Provide advisory services to farmers on best practices.", difficulty:"Hard", startup_cost:300, potential_income:4200, time_to_learn:"Ongoing", regions:["All"], popularity:31},
+  {id:93, title:"Farm Produce Aggregation", category:"Agriculture & Farming", icon:"fas fa-truck-loading", desc:"Buy produce from small farmers and sell in bulk to markets.", difficulty:"Medium", startup_cost:3000, potential_income:5500, time_to_learn:"Ongoing", regions:["All"], popularity:43},
+  {id:94, title:"Cold Storage Services", category:"Services", icon:"fas fa-warehouse", desc:"Offer cold storage for fish, meat and vegetables.", difficulty:"Hard", startup_cost:12000, potential_income:7800, time_to_learn:"Ongoing", regions:["Greater Accra","Ashanti","Western"], popularity:28},
+  {id:95, title:"Agro-Processing Equipment Hiring", category:"Agriculture & Farming", icon:"fas fa-cogs", desc:"Hire out cassava graters, oil presses and other equipment.", difficulty:"Medium", startup_cost:6500, potential_income:4900, time_to_learn:"Ongoing", regions:["All"], popularity:32},
+  {id:96, title:"Digital Literacy Training", category:"Tech & Digital", icon:"fas fa-laptop", desc:"Teach basic computer and smartphone skills to adults and youth.", difficulty:"Easy", startup_cost:400, potential_income:2600, time_to_learn:"2-3 weeks", regions:["All"], popularity:48},
+  {id:97, title:"Online Tutoring (JAMB/WASSCE)", category:"Services", icon:"fas fa-chalkboard-teacher", desc:"Offer online lessons for JAMB, WASSCE and other exams.", difficulty:"Medium", startup_cost:300, potential_income:3800, time_to_learn:"Ongoing", regions:["All"], popularity:45},
+  {id:98, title:"CV Writing & Career Coaching", category:"Services", icon:"fas fa-file-alt", desc:"Help people write professional CVs and prepare for interviews.", difficulty:"Easy", startup_cost:100, potential_income:2400, time_to_learn:"1-2 weeks", regions:["All"], popularity:42},
+  {id:99, title:"Business Registration Assistance", category:"Services", icon:"fas fa-file-contract", desc:"Help entrepreneurs register businesses with Registrar General.", difficulty:"Easy", startup_cost:200, potential_income:2800, time_to_learn:"1 week", regions:["All"], popularity:39},
+  {id:100, title:"Tax Advisory for SMEs", category:"Services", icon:"fas fa-receipt", desc:"Help small businesses with tax filing and compliance.", difficulty:"Medium", startup_cost:400, potential_income:3500, time_to_learn:"Ongoing", regions:["All"], popularity:36},
+  {id:101, title:"Bookkeeping Services", category:"Services", icon:"fas fa-book", desc:"Provide simple bookkeeping and financial record services for SMEs.", difficulty:"Medium", startup_cost:300, potential_income:2900, time_to_learn:"3-4 weeks", regions:["All"], popularity:40},
+  {id:102, title:"POS & Payment Solutions", category:"Services", icon:"fas fa-credit-card", desc:"Help businesses set up Point of Sale and digital payment systems.", difficulty:"Easy", startup_cost:800, potential_income:3200, time_to_learn:"1-2 weeks", regions:["All"], popularity:44},
+  {id:103, title:"Cyber Cafe / Gaming Centre", category:"Services", icon:"fas fa-gamepad", desc:"Run a small cyber cafe and gaming centre.", difficulty:"Medium", startup_cost:3500, potential_income:4100, time_to_learn:"Ongoing", regions:["All"], popularity:37},
+  {id:104, title:"Printing & Photocopy Services", category:"Services", icon:"fas fa-print", desc:"Offer printing, photocopying, scanning and binding services.", difficulty:"Easy", startup_cost:1200, potential_income:2800, time_to_learn:"1 week", regions:["All"], popularity:58},
+  {id:105, title:"Signage & Banner Printing", category:"Services", icon:"fas fa-sign", desc:"Design and print signs, banners and vehicle branding.", difficulty:"Medium", startup_cost:2800, potential_income:4500, time_to_learn:"3-4 weeks", regions:["All"], popularity:46}
+];
+
 // Ghana Regions and Districts (sample for demo)
 const regionsList = [
   "Greater Accra", "Ashanti", "Western", "Central", "Eastern", 
@@ -1503,7 +1588,7 @@ function createCategoryChips() {
   const container = document.getElementById('categoryChips');
   container.innerHTML = '';
   
-  const categories = ['All', ...new Set(skillsData.map(s => s.category))];
+  const categories = ['All', ...new Set(getAllSkills().map(s => s.category))];
   
   categories.forEach(cat => {
     const chip = document.createElement('div');
@@ -1545,8 +1630,12 @@ function createBudgetChips() {
   });
 }
 
+function getAllSkills() {
+  return [...featuredSkills, ...extendedSkills];
+}
+
 function filterSkills() {
-  let filtered = [...skillsData];
+  let filtered = getAllSkills();
   
   // Search
   const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
@@ -1572,7 +1661,10 @@ function filterSkills() {
   // District
   const district = document.getElementById('districtSelect').value;
   if (district) {
-    filtered = filtered.filter(s => s.districts.includes('All') || s.districts.includes(district));
+    filtered = filtered.filter(s => {
+      if (!s.districts) return true; // lite skills or skills without districts field
+      return s.districts.includes('All') || s.districts.includes(district);
+    });
   }
   
   // Budget
@@ -1698,15 +1790,17 @@ function toggleFavorite(skillId, btnElement) {
 // ==================== DETAIL SCREEN ====================
 function showDetail(skillId) {
   currentSkillId = skillId;
-  const skill = skillsData.find(s => s.id === skillId);
+  const skill = getAllSkills().find(s => s.id === skillId);
   if (!skill) return;
   
   const container = document.getElementById('screen-detail');
   
   const isFav = favorites.includes(skillId);
-  const prog = progressData[skillId] || { checklistCompleted: new Array(skill.checklist.length).fill(0) };
-  const completedCount = prog.checklistCompleted.filter(Boolean).length;
-  const progressPercent = Math.round((completedCount / skill.checklist.length) * 100);
+  const isLite = !skill.steps || !skill.checklist;
+  const checklistLen = isLite ? 5 : skill.checklist.length;
+  const prog = progressData[skillId] || { checklistCompleted: new Array(checklistLen).fill(0) };
+  const completedCount = prog.checklistCompleted ? prog.checklistCompleted.filter(Boolean).length : 0;
+  const progressPercent = Math.round((completedCount / checklistLen) * 100);
   
   let html = `
     <div class="detail">
@@ -1721,6 +1815,10 @@ function showDetail(skillId) {
       <div class="detail-icon"><i class="${skill.icon}"></i></div>
       <h2>${skill.title}</h2>
       <p class="desc">${skill.desc}</p>
+      
+      ${isLite ? `<div style="margin:0 16px 16px; padding:10px 14px; background:var(--accent-light); border-radius:8px; font-size:13px; color:var(--accent);">
+        <strong>High-potential skill.</strong> Detailed step-by-step guides are available for our 25 featured skills. This one appears in search results.
+      </div>` : ''}
       
       <div class="cost-bar">
         <div class="label">Startup Capital</div>
@@ -1871,7 +1969,7 @@ function toggleFavoriteFromDetail(skillId, btn) {
 
 function toggleChecklistItem(skillId, index, element) {
   if (!progressData[skillId]) {
-    const skill = skillsData.find(s => s.id === skillId);
+    const skill = getAllSkills().find(s => s.id === skillId);
     progressData[skillId] = { 
       checklistCompleted: new Array(skill.checklist.length).fill(0),
       started: new Date().toISOString()
@@ -1894,7 +1992,7 @@ function toggleChecklistItem(skillId, index, element) {
   }
   
   // Update progress percentage in header if exists
-  const skill = skillsData.find(s => s.id === skillId);
+  const skill = getAllSkills().find(s => s.id === skillId);
   const completed = progressData[skillId].checklistCompleted.filter(Boolean).length;
   const percent = Math.round((completed / skill.checklist.length) * 100);
   
@@ -1930,7 +2028,7 @@ function calculateProfit(skillId) {
 }
 
 function shareSkill(skillId) {
-  const skill = skillsData.find(s => s.id === skillId);
+  const skill = getAllSkills().find(s => s.id === skillId);
   if (!skill) return;
   
   const text = `Check out this side hustle idea from Skill Intel Ghana:\n\n*${skill.title}*\n${skill.desc}\n\nStartup: ₵${skill.startup_cost} | Potential: ₵${skill.potential_income}/mo\n\nDownload the app: [Skill Intel Ghana]`;
@@ -1951,7 +2049,7 @@ function logActualEarnings(skillId) {
   }
   
   if (!progressData[skillId]) {
-    const skill = skillsData.find(s => s.id === skillId);
+    const skill = getAllSkills().find(s => s.id === skillId);
     progressData[skillId] = { checklistCompleted: new Array(skill.checklist.length).fill(0) };
   }
   
@@ -1989,7 +2087,7 @@ function logActualEarnings(skillId) {
 
 function markSkillStarted(skillId) {
   if (!progressData[skillId]) {
-    const skill = skillsData.find(s => s.id === skillId);
+    const skill = getAllSkills().find(s => s.id === skillId);
     progressData[skillId] = { 
       checklistCompleted: new Array(skill.checklist.length).fill(0),
       started: new Date().toISOString()
@@ -2195,7 +2293,7 @@ function showQuizResults() {
 
 function getRecommendations(answers) {
   // answers: [capital, time, workstyle, location, goal]
-  let scored = skillsData.map(skill => {
+  let scored = getAllSkills().map(skill => {
     let score = 0;
     
     // Capital match
@@ -2251,7 +2349,7 @@ function renderProgress() {
     const p = progressData[key];
     if (p.checklistCompleted) {
       totalCompletedItems += p.checklistCompleted.filter(Boolean).length;
-      const skill = skillsData.find(s => s.id == key);
+      const skill = getAllSkills().find(s => s.id == key);
       if (skill) totalItems += skill.checklist.length;
     }
   });
@@ -2325,7 +2423,7 @@ function renderProgress() {
     const dateB = progressData[b].lastUpdated || progressData[b].started || '';
     return dateB.localeCompare(dateA);
   }).forEach(skillId => {
-    const skill = skillsData.find(s => s.id == skillId);
+    const skill = getAllSkills().find(s => s.id == skillId);
     if (!skill) return;
     
     const p = progressData[skillId];
@@ -2414,7 +2512,7 @@ function showFavorites() {
     const container = document.getElementById('skillsList');
     container.innerHTML = '';
     
-    const favSkills = skillsData.filter(s => favorites.includes(s.id));
+    const favSkills = getAllSkills().filter(s => favorites.includes(s.id));
     
     if (favSkills.length === 0) {
       container.innerHTML = `<div style="padding:40px 20px; text-align:center; color:var(--text-muted);">No favorites yet. Heart skills you like!</div>`;
@@ -2555,9 +2653,20 @@ function init() {
   createCategoryChips();
   createBudgetChips();
   
-  // Initial skills render
-  const initialSkills = [...skillsData].sort((a, b) => b.popularity - a.popularity);
+  // Initial skills render - only featured rich skills by default
+  const initialSkills = [...featuredSkills].sort((a, b) => b.popularity - a.popularity);
   renderSkills(initialSkills);
+  
+  // Show info that more skills are available via search/filter
+  setTimeout(() => {
+    const list = document.getElementById('skillsList');
+    if (list && list.children.length > 0) {
+      const info = document.createElement('div');
+      info.style.cssText = 'text-align:center; padding:12px; font-size:12px; color:var(--text-muted);';
+      info.innerHTML = `Showing ${featuredSkills.length} featured skills. Search or use filters to discover 80+ more.`;
+      list.parentNode.insertBefore(info, list.nextSibling);
+    }
+  }, 800);
   
   // Load profile preview
   if (userProfile.name) {
